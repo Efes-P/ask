@@ -9,10 +9,6 @@
 	@echo "Running Security Analysis..."
 	@cat codebase.txt | ask "Analyze the following code for security vulnerabilities and unsafe patterns. Provide exactly 5 to 7 bullet points in the format 'risk -> mitigation'." 
 
-clean:
-	rm -f quality.md perf.md security.md
-
-
 	@echo "Summarizing Code Quality Report..."
 	@cat quality.md | ask "Compress the following quality analysis into exactly 5 bullet points. Keep only the most critical, actionable items." 
 
@@ -21,3 +17,6 @@ clean:
 
 	@echo "Summarizing Security Report..."
 	@cat security.md | ask "Compress the following security analysis into exactly 5 bullet points. Keep only the most critical, actionable items."
+clean:
+	rm -f quality.md perf.md security.md
+
