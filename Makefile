@@ -17,6 +17,19 @@
 
 	@echo "Summarizing Security Report..."
 	@cat security.md | ask "Compress the following security analysis into exactly 5 bullet points. Keep only the most critical, actionable items."
+concatenated.md: quality.sum.md perf.sum.md security.sum.md [cite: 38, 39, 40, 41]
+	@echo "Concatenating summaries into a single report..."
+	@echo "## Code Quality" > concatenated.md [cite: 74, 79]
+	@cat quality.sum.md >> concatenated.md [cite: 74, 79]
+	@echo "" >> concatenated.md [cite: 79]
+	@echo "## Performance" >> concatenated.md [cite: 75, 79]
+	@cat perf.sum.md >> concatenated.md [cite: 76, 79]
+	@echo "" >> concatenated.md [cite: 79]
+	@echo "## Security" >> concatenated.md [cite: 77, 79]
+	@cat security.sum.md >> concatenated.md [cite: 78, 79]
+refined.md: concatenated.md [cite: 41, 42, 83]
+	@echo "Refining concatenated report (removing duplicates, filtering high-signal issues)..."
+	@cat concatenated.md | ask "Review this concatenated report containing Code Quality, Performance, and Security sections. Remove any duplicate findings and keep only high-signal, critical issues. Maintain the same three section headings." > refined.md [cite: 48, 85, 86, 87, 89, 90]
 clean:
-	rm -f quality.md perf.md security.md
+	rm -f concatenated.md refined.md
 
